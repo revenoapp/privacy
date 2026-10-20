@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Renevo</title>
+<meta name="title-en" content="Privacy Policy — Renevo">
+<meta name="title-ru" content="Политика конфиденциальности — Renevo">
+<meta name="description" content="Renevo does not collect your data. Everything stays on your device.">
+<style>
+/* Renevo:浅色/深色自适应,手机优先。本页自带样式,不依赖外部文件。 */
+:root {
+  --bg: #f2f5f3;
+  --surface: #ffffff;
+  --fg: #14201c;
+  --muted: #5b6b65;
+  --line: #d3dcd8;
+  --accent: #0e7c66;
+  --accent-soft: #d6efe8;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1412;
+    --surface: #17211e;
+    --fg: #e6efeb;
+    --muted: #93a59e;
+    --line: #2b3a35;
+    --accent: #3dd9b0;
+    --accent-soft: #14382f;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0 20px 80px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 32px 0 24px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: linear-gradient(145deg, #16a58b, #0a5545);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.mark svg { width: 26px; height: 26px; }
+header h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+header .sub { color: var(--muted); font-size: 14px; margin: 2px 0 0; }
+h2 { font-size: 22px; margin: 40px 0 12px; letter-spacing: -0.01em; }
+h2:first-of-type { margin-top: 0; }
+h3 { font-size: 17px; margin: 28px 0 8px; }
+p, li { color: var(--fg); }
+.lede { font-size: 18px; color: var(--muted); }
+.meta { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
+ul, ol { padding-left: 22px; }
+li { margin: 6px 0; }
+a { color: var(--accent); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 20px 0;
+}
+.card h3 { margin-top: 0; }
+.card p:last-child, .card ul:last-child { margin-bottom: 0; }
+.highlight {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  margin: 24px 0;
+}
+.highlight p { margin: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 20px 0; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 600;
+}
+.scroll { overflow-x: auto; }
+footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+}
+footer a { color: var(--muted); }
+/* 语言切换:默认英文可见(没有 JS 时也能读),下面的脚本按语言代码切换 */
+[data-lang="ru"] { display: none; }
+html.lang-ru [data-lang="ru"] { display: revert; }
+html.lang-ru [data-lang="en"] { display: none; }
+</style>
+<script>
+/* 语言切换:?lang=ru 或 ?lang=en;没有参数时按浏览器语言,默认英文。
+   在 <head> 里同步执行,避免切换时闪烁。 */
+(function () {
+  var supported = ["en", "ru"];
+
+  function requested() {
+    var match = /[?&]lang=([a-zA-Z-]+)/.exec(location.search) ||
+                /^#(?:lang=)?([a-zA-Z-]+)$/.exec(location.hash);
+    return match ? match[1] : null;
+  }
+
+  function normalize(code) {
+    if (!code) return null;
+    code = code.toLowerCase().split("-")[0];
+    return supported.indexOf(code) >= 0 ? code : null;
+  }
+
+  var lang = normalize(requested());
+  if (!lang) {
+    var list = navigator.languages || [navigator.language];
+    for (var i = 0; i < list.length && !lang; i++) lang = normalize(list[i]);
+  }
+  if (!lang) lang = "en";
+
+  var root = document.documentElement;
+  root.setAttribute("lang", lang);
+  root.className = (root.className || "").replace(/\blang-\w+\b/g, "").trim() + " lang-" + lang;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var title = document.querySelector('meta[name="title-' + lang + '"]');
+    if (title) document.title = title.getAttribute("content");
+
+    var other = lang === "ru" ? "en" : "ru";
+    var links = document.querySelectorAll("[data-lang-switch]");
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute("href", location.pathname + "?lang=" + other);
+    }
+  });
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round">
+      <path d="M12 3.2a8.8 8.8 0 1 0 8.4 6.1"></path>
+      <circle cx="12" cy="12" r="2.6" fill="#fff" stroke="none"></circle>
+    </svg>
+  </div>
+  <div>
+    <h1>Renevo</h1>
+    <p class="sub"><span data-lang="en">Privacy Policy</span><span data-lang="ru">Политика конфиденциальности</span></p>
+  </div>
+</header>
+
+<!-- ===================== English ===================== -->
+<div data-lang="en">
+
+<p class="meta">Last updated: 20 October 2026</p>
+
+<p class="lede">Renevo does not collect, transmit, or sell your personal data. Everything you enter stays on your device.</p>
+
+<div class="highlight">
+  <p><strong>In short:</strong> no account, no analytics, no advertising, no tracking. The app makes no network requests of its own. iCloud sync is optional, turned off by default, and uses your own iCloud account, which we cannot access.</p>
+</div>
+
+<h2>Who we are</h2>
+<p>Renevo (“the app”) is developed and published by QUNATUMLEAP INNOVATION INTERNATIONAL LTD (“we”, “us”). This policy explains what the app does with information on your device. If you have questions, contact us at <a href="mailto:qlinnovation@outlook.com">qlinnovation@outlook.com</a>.</p>
+
+<h2>Data we collect</h2>
+<p>We do not collect any data. We operate no servers, no accounts, and no analytics. We never receive your subscriptions, your spending records, your receipt photos, or any identifier associated with you or your device.</p>
+
+<h2>Data you store in the app</h2>
+<p>The app stores the following on your device so that it can work:</p>
+
+<div class="scroll">
+<table>
+  <thead>
+    <tr><th>What</th><th>Where it is stored</th><th>Leaves your device?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Subscriptions (name, amount, currency, billing cycle, dates, category, group, notes)</td><td>A file in the app’s own storage area on your device</td><td>Only if you turn on iCloud sync</td></tr>
+    <tr><td>Expenses (merchant, amount, currency, date, category, group, notes)</td><td>A file in the app’s own storage area on your device</td><td>Only if you turn on iCloud sync</td></tr>
+    <tr><td>Receipt photos</td><td>The app’s own storage area on your device</td><td>No. Receipt photos are never synced.</td></tr>
+    <tr><td>Settings (main currency, exchange rates, reminder preference)</td><td>Your device’s app preferences</td><td>Only if you turn on iCloud sync</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>You can delete any entry inside the app. Deleting the app from your device removes everything it stored locally.</p>
+
+<h2>iCloud sync (optional)</h2>
+<p>Sync is <strong>turned off by default</strong>. If you turn it on in Settings, the app stores your subscriptions, expenses, and settings in your own iCloud account using Apple’s iCloud key-value storage, so the same data appears on your other devices signed in to the same Apple Account.</p>
+<ul>
+  <li>The data goes to <strong>your</strong> iCloud account. It does not pass through, and is not readable by, any server we operate.</li>
+  <li>Receipt photos are <strong>not</strong> synced. They stay on the device where you added them.</li>
+  <li>Apple’s handling of iCloud data is governed by <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple’s Privacy Policy</a>.</li>
+  <li>You can turn sync off at any time in Settings. Turning it off stops this device from syncing; data already in your iCloud account remains there until you remove it through iOS Settings or delete the app.</li>
+</ul>
+
+<h2>Camera and photo library</h2>
+<p>If you choose to scan a receipt, the app asks for access to your camera or photo library.</p>
+<ul>
+  <li>Text and QR codes are recognised <strong>on your device</strong> using Apple’s built-in Vision framework. No image or recognised text is uploaded anywhere.</li>
+  <li>The app reads only the image you select or capture at that moment. It does not browse, index, or read your photo library in the background.</li>
+  <li>A receipt photo is saved only if you save the expense, and it is stored on your device only.</li>
+</ul>
+
+<h2>Notifications</h2>
+<p>If you allow notifications, the app schedules local reminders before a charge or before a free trial ends. These are created and delivered entirely by your device. No push server is involved and no notification content leaves your device.</p>
+
+<h2>Links to other services</h2>
+<p>The app includes cancellation guides that link to the official account or help pages of third-party services, and a link to your App Store subscriptions. Opening such a link takes you to a website operated by that company, under its own privacy policy. We have no affiliation with those companies, receive nothing from them, and do not share any information with them.</p>
+
+<h2>Children</h2>
+<p>The app is not directed at children and does not knowingly collect information from anyone. Because we collect no data at all, we hold no information about any user regardless of age.</p>
+
+<h2>Your rights</h2>
+<p>Privacy laws such as the GDPR and the CCPA give you rights to access, correct, export, or delete personal data a company holds about you. We hold none, so there is nothing for us to retrieve or erase. The data in the app is already entirely in your hands: you can view, edit, and delete it inside the app, and remove it completely by deleting the app.</p>
+
+<h2>Changes to this policy</h2>
+<p>If the app’s behaviour changes in a way that affects this policy, we will update this page and the date at the top. Material changes will also be noted in the app’s release notes on the App Store.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="mailto:qlinnovation@outlook.com">qlinnovation@outlook.com</a></p>
+
+<footer>
+  <p>Renevo · <a href="../">Home</a> · <a href="../terms/">Terms of Use</a> · <a href="../support/">Support</a> · <a href="?lang=ru" data-lang-switch>Русская версия</a></p>
+</footer>
+
+</div>
+
+<!-- ===================== Русский ===================== -->
+<div data-lang="ru">
+
+<p class="meta">Обновлено: 20 октября 2026 г.</p>
+
+<p class="lede">Renevo не собирает, не передаёт и не продаёт ваши персональные данные. Всё, что вы вводите, остаётся на вашем устройстве.</p>
+
+<div class="highlight">
+  <p><strong>Коротко:</strong> без аккаунта, без аналитики, без рекламы и без слежки. Приложение не отправляет никаких сетевых запросов. Синхронизация с iCloud необязательна, по умолчанию выключена и использует ваш собственный аккаунт iCloud, к которому у нас нет доступа.</p>
+</div>
+
+<h2>Кто мы</h2>
+<p>Приложение Renevo («приложение») разработано и выпускается QUNATUMLEAP INNOVATION INTERNATIONAL LTD («мы»). Этот документ объясняет, что приложение делает с информацией на вашем устройстве. Вопросы можно направить на <a href="mailto:qlinnovation@outlook.com">qlinnovation@outlook.com</a>.</p>
+
+<h2>Какие данные мы собираем</h2>
+<p>Мы не собираем никаких данных. У нас нет серверов, аккаунтов и аналитики. Мы никогда не получаем ваши подписки, записи о тратах, фотографии чеков или какие-либо идентификаторы, связанные с вами или вашим устройством.</p>
+
+<h2>Данные, которые вы храните в приложении</h2>
+<p>Чтобы приложение работало, оно сохраняет на вашем устройстве следующее:</p>
+
+<div class="scroll">
+<table>
+  <thead>
+    <tr><th>Что</th><th>Где хранится</th><th>Покидает устройство?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Подписки (название, сумма, валюта, период, даты, категория, группа, заметки)</td><td>Файл в собственном хранилище приложения на устройстве</td><td>Только если вы включите синхронизацию с iCloud</td></tr>
+    <tr><td>Траты (магазин, сумма, валюта, дата, категория, группа, заметки)</td><td>Файл в собственном хранилище приложения на устройстве</td><td>Только если вы включите синхронизацию с iCloud</td></tr>
+    <tr><td>Фотографии чеков</td><td>Собственное хранилище приложения на устройстве</td><td>Нет. Фотографии чеков никогда не синхронизируются.</td></tr>
+    <tr><td>Настройки (основная валюта, курсы валют, напоминания)</td><td>Настройки приложения на устройстве</td><td>Только если вы включите синхронизацию с iCloud</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Любую запись можно удалить прямо в приложении. Удаление приложения с устройства стирает всё, что оно сохранило локально.</p>
+
+<h2>Синхронизация с iCloud (необязательно)</h2>
+<p>Синхронизация <strong>по умолчанию выключена</strong>. Если вы включите её в настройках, приложение сохранит ваши подписки, траты и настройки в вашем собственном аккаунте iCloud, используя хранилище «ключ-значение» iCloud от Apple, чтобы те же данные были доступны на других ваших устройствах с тем же аккаунтом Apple.</p>
+<ul>
+  <li>Данные попадают в <strong>ваш</strong> аккаунт iCloud. Они не проходят через наши серверы и недоступны нам.</li>
+  <li>Фотографии чеков <strong>не</strong> синхронизируются и остаются на том устройстве, где вы их добавили.</li>
+  <li>Обработка данных в iCloud регулируется <a href="https://www.apple.com/ru/legal/privacy/" rel="noopener">политикой конфиденциальности Apple</a>.</li>
+  <li>Синхронизацию можно выключить в любой момент. Данные, уже находящиеся в вашем iCloud, останутся там, пока вы не удалите их через настройки iOS или не удалите приложение.</li>
+</ul>
+
+<h2>Камера и медиатека</h2>
+<p>Если вы решите отсканировать чек, приложение запросит доступ к камере или медиатеке.</p>
+<ul>
+  <li>Текст и QR-коды распознаются <strong>на вашем устройстве</strong> с помощью встроенной технологии Apple Vision. Ни изображение, ни распознанный текст никуда не загружаются.</li>
+  <li>Приложение читает только то изображение, которое вы в этот момент выбрали или сняли. Оно не просматривает и не индексирует вашу медиатеку в фоновом режиме.</li>
+  <li>Фотография чека сохраняется, только если вы сохраните трату, и хранится исключительно на вашем устройстве.</li>
+</ul>
+
+<h2>Уведомления</h2>
+<p>Если вы разрешите уведомления, приложение создаст локальные напоминания перед списанием или перед окончанием пробного периода. Они формируются и показываются полностью вашим устройством. Сервер push-уведомлений не используется, содержимое уведомлений не покидает устройство.</p>
+
+<h2>Ссылки на другие сервисы</h2>
+<p>В приложении есть инструкции по отмене подписок со ссылками на официальные страницы аккаунта или справки сторонних сервисов, а также ссылка на подписки App Store. Переход по такой ссылке открывает сайт соответствующей компании, который работает по её собственной политике конфиденциальности. Мы не связаны с этими компаниями, ничего от них не получаем и не передаём им никакой информации.</p>
+
+<h2>Дети</h2>
+<p>Приложение не предназначено для детей и не собирает информацию ни от кого. Поскольку мы вообще не собираем данные, у нас нет сведений ни об одном пользователе независимо от возраста.</p>
+
+<h2>Ваши права</h2>
+<p>Законы о защите данных, в том числе GDPR и Федеральный закон № 152-ФЗ «О персональных данных», дают вам права на доступ, исправление, перенос и удаление персональных данных, которые компания хранит о вас. Мы не храним таких данных, поэтому нам нечего предоставить или удалить. Данные в приложении полностью находятся у вас: вы можете просматривать, изменять и удалять их в приложении, а также полностью стереть, удалив приложение.</p>
+
+<h2>Изменения</h2>
+<p>Если поведение приложения изменится так, что это затронет данный документ, мы обновим эту страницу и дату вверху. О существенных изменениях мы также сообщим в описании обновления в App Store.</p>
+
+<h2>Контакты</h2>
+<p>Вопросы по этому документу: <a href="mailto:qlinnovation@outlook.com">qlinnovation@outlook.com</a></p>
+
+<footer>
+  <p>Renevo · <a href="../">Главная</a> · <a href="../terms/">Условия использования</a> · <a href="../support/">Поддержка</a> · <a href="?lang=en" data-lang-switch>English version</a></p>
+</footer>
+
+</div>
+
+</div>
+</body>
+</html>
